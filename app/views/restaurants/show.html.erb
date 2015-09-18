@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="large-6">
+    <h2 class="title"><%= @restaurant.name %><h3>
+    <table>
+      <tr>
+        <td><%= @restaurant.address %></td>
+        <td><%= @restaurant.city %></td>
+        <td><%= @restaurant.state %></td>
+        <td><%= @restaurant.zip %></td>
+      </tr>
+  </table>
+    <ul>
+      <% if @restaurant.description.present? %>
+        <li><%= @restaurant.description %></li>
+      <% elsif @restaurant.category.present? %>
+        <li><%= @restaurant.category %></li>
+      <% end %>
+    </ul>
+
+    <%= link_to 'Add a Review', new_restaurant_review_path(@restaurant), class: "button tiny" %>
+    <table>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.body %></td>
+        <td><%= review.rating %> out of 5</td>
+      </tr>
+    <% end %>
+    </table>
+
+  <%= link_to "All Listings", root_path, class: "button tiny" %>
+  </div>
+</div>

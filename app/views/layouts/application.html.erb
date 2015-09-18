@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RestaurantReviews</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Chau+Philomene+One' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/">Launch Restaurant Reviews</a></h1>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <ul class="right">
+      </ul>
+    </section>
+  </nav>
+
+  <% if flash.present? %>
+    <% flash.each do |key, value| %>
+      <%= value %>
+    <% end %>
+  <% end %>
+
+  <%= yield %>
+
+</body>
+</html>
