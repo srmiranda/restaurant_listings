@@ -1744,3 +1744,114 @@ Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.3ms)
   [1m[35mSQL (0.2ms)[0m  INSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
   [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
   [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/restaurants" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by RestaurantsController#index as HTML
+  [1m[35mRestaurant Load (0.7ms)[0m  SELECT "restaurants".* FROM "restaurants"
+  Rendered restaurants/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 252ms (Views: 250.9ms | ActiveRecord: 0.7ms)
+Started GET "/restaurants/new" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by RestaurantsController#new as HTML
+  Rendered restaurants/new.html.erb within layouts/application (20.1ms)
+Completed 200 OK in 23ms (Views: 22.7ms | ActiveRecord: 0.0ms)
+Started POST "/restaurants" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by RestaurantsController#create as HTML
+  Parameters: {"utf8"=>"✓", "restaurant"=>{"name"=>"Pasta House", "address"=>"5 Alden Rd", "city"=>"Fairhaven", "state"=>"MA", "zip"=>"02719", "description"=>"Great homestyle Italian food.", "category"=>"Italian"}, "commit"=>"Add Restaurant"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/restaurants/146
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+Started GET "/restaurants/146" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by RestaurantsController#show as HTML
+  Parameters: {"id"=>"146"}
+  [1m[35mRestaurant Load (0.4ms)[0m  SELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT 1  [["id", 146]]
+  [1m[36mReview Load (0.7ms)[0m  [1mSELECT "reviews".* FROM "reviews" WHERE "reviews"."restaurant_id" = $1[0m  [["restaurant_id", 146]]
+  Rendered restaurants/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 84ms (Views: 58.2ms | ActiveRecord: 2.1ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/restaurants/147" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by RestaurantsController#show as HTML
+  Parameters: {"id"=>"147"}
+  [1m[36mRestaurant Load (0.3ms)[0m  [1mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT 1[0m  [["id", 147]]
+  [1m[35mReview Load (0.3ms)[0m  SELECT "reviews".* FROM "reviews" WHERE "reviews"."restaurant_id" = $1  [["restaurant_id", 147]]
+  Rendered restaurants/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.5ms)
+Started GET "/restaurants/147/reviews/new" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by ReviewsController#new as HTML
+  Parameters: {"restaurant_id"=>"147"}
+  [1m[36mRestaurant Load (0.3ms)[0m  [1mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT 1[0m  [["id", 147]]
+  Rendered reviews/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 9ms (Views: 4.2ms | ActiveRecord: 0.9ms)
+Started POST "/restaurants/147/reviews" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by ReviewsController#create as HTML
+  Parameters: {"utf8"=>"✓", "review"=>{"body"=>"Best I've ever had!", "rating"=>"5"}, "commit"=>"Add Review", "restaurant_id"=>"147"}
+  [1m[35mRestaurant Load (0.6ms)[0m  SELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT 1  [["id", 147]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "reviews" ("rating", "body", "restaurant_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["rating", 5], ["body", "Best I've ever had!"], ["restaurant_id", 147], ["created_at", "2015-09-18 16:21:57.607649"], ["updated_at", "2015-09-18 16:21:57.607649"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/restaurants/147
+Completed 302 Found in 10ms (ActiveRecord: 1.4ms)
+Started GET "/restaurants/147" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by RestaurantsController#show as HTML
+  Parameters: {"id"=>"147"}
+  [1m[35mRestaurant Load (0.3ms)[0m  SELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT 1  [["id", 147]]
+  [1m[36mReview Load (0.2ms)[0m  [1mSELECT "reviews".* FROM "reviews" WHERE "reviews"."restaurant_id" = $1[0m  [["restaurant_id", 147]]
+  Rendered restaurants/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/restaurants/148" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by RestaurantsController#show as HTML
+  Parameters: {"id"=>"148"}
+  [1m[36mRestaurant Load (0.4ms)[0m  [1mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT 1[0m  [["id", 148]]
+  [1m[35mReview Load (0.3ms)[0m  SELECT "reviews".* FROM "reviews" WHERE "reviews"."restaurant_id" = $1  [["restaurant_id", 148]]
+  Rendered restaurants/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/restaurants" for 127.0.0.1 at 2015-09-18 12:21:57 -0400
+Processing by RestaurantsController#index as HTML
+  [1m[35mRestaurant Load (0.2ms)[0m  SELECT "restaurants".* FROM "restaurants"
+  Rendered restaurants/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "restaurants" ("name", "address", "city", "state", "zip", "description", "category") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Pasta House"], ["address", "5 Alden Rd"], ["city", "Fairhaven"], ["state", "MA"], ["zip", "02719"], ["description", "Great homestyle Italian food."], ["category", "Italian"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
